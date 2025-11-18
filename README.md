@@ -4,7 +4,7 @@ This is a full-stack application built using the MERN stack (MongoDB, Express, R
 
 ## ✨ Key Features
 
-* [cite_start]**Secure Authentication** 🛡️: Uses JWT for session management and `bcrypt` for secure password hashing during login and signup[cite: 199, 202].
+* **Secure Authentication** 🛡️: Uses JWT for session management and `bcrypt` for secure password hashing during login and signup[cite: 199, 202].
 * [cite_start]**Role-Based Access** 🔑: Clearly distinguishes permissions for Students and Teachers[cite: 195].
 * [cite_start]**Full CRUD Management** ✅: Allows for creating, reading, updating, and deleting tasks[cite: 222].
 * [cite_start]**Teacher Oversight** 🧑‍🏫: Teachers can seamlessly view *all* tasks created by their assigned students[cite: 196, 205].
@@ -43,7 +43,7 @@ You'll need Node.js and a running MongoDB instance.
     PORT=5000
 
     # Frontend URL for CORS configuration (Update this!)
-    CLIENT_ORIGIN=[http://192.168.29.127:3000](http://192.168.29.127:3000)
+    CLIENT_ORIGIN=http://localhost:3000
     ```
 4.  **Start the API:**
     ```bash
@@ -66,7 +66,7 @@ You'll need Node.js and a running MongoDB instance.
     ```env
     # Note: React needs the prefix 'REACT_APP_' for env variables.
     # Set the API URL to match your backend's running address (Update this!)
-    REACT_APP_API_URL=[http://192.168.29.127:5000](http://192.168.29.127:5000)
+    REACT_APP_API_URL=http://localhost:5000
     ```
 4.  **Launch the app:**
     ```bash
@@ -76,7 +76,7 @@ You'll need Node.js and a running MongoDB instance.
 
 ***
 
-## 🔐 How Authorization Works
+## 🔐 Authorization Logic (Teacher Task-View Explanation)
 
 [cite_start]The most crucial part of this project is the authorization logic, primarily handled in `server/controllers/taskController.js`[cite: 318].
 
@@ -88,12 +88,12 @@ You'll need Node.js and a running MongoDB instance.
 ### Teacher Task-View Query (`GET /tasks`)
 
 [cite_start]When a teacher requests tasks, the server performs a complex query[cite: 318]:
-1.  [cite_start]**Find Associated Students:** It first looks up all students whose `teacherId` matches the logged-in teacher's `userId`[cite: 321, 322].
-2.  [cite_start]**Combine Tasks:** It then uses a MongoDB `$or` operation to return tasks created by **(a)** the teacher themselves, **OR (b)** one of their assigned students[cite: 322].
+1. [cite_start]**Find Associated Students:** It first looks up all students whose `teacherId` matches the logged-in teacher's `userId`[cite: 321, 322].
+2. [cite_start]**Combine Tasks:** It then uses a MongoDB `$or` operation to return tasks created by **(a)** the teacher themselves, **OR (b)** one of their assigned students[cite: 322].
 
 ### Modification Restrictions
 
-* **Task Modification (`PUT`, `DELETE`):** The logic explicitly checks if `task.userId` matches `req.user.userId`. [cite_start]This means teachers can **view** student tasks, but they cannot edit or delete them; only the student can[cite: 343, 344, 351].
+* **Task Modification (`PUT`, `DELETE`):** The logic explicitly checks if `task.userId` matches `req.user.userId`. [cite_start]This means teachers can **view** student tasks, but they cannot edit or delete them; only the task owner (the student) can[cite: 343, 344, 351].
 
 ***
 
@@ -113,4 +113,4 @@ You'll need Node.js and a running MongoDB instance.
 AI tools were leveraged to accelerate boilerplate creation and structure the files.
 
 * [cite_start]**AI helped with:** Initializing the file structure [cite: 301][cite_start], providing basic syntax for Mongoose and Joi schemas [cite: 312][cite_start], and drafting basic CSS[cite: 303].
-* [cite_start]**I implemented:** The entire **Role-Based Query Logic** (`buildTaskQuery`) [cite: 319, 322, 331][cite_start], all explicit **Authorization Checks** for `PUT`/`DELETE` [cite: 344, 351][cite_start], and the **Date Filtering logic**[cite: 125, 323]. 
+* [cite_start]**I implemented or fixed:** The entire **Role-Based Query Logic** (`buildTaskQuery`) [cite: 319, 322, 331][cite_start], all explicit **Authorization Checks** for `PUT`/`DELETE` [cite: 344, 351][cite_start], and the **Date Filtering logic**[cite: 125, 323].
