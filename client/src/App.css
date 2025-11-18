@@ -1,0 +1,342 @@
+/* client/src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+  --primary-color: #4CAF50; /* Green */
+  --secondary-color: #2196F3; /* Blue */
+  --accent-color: #FF9800; /* Orange for overdue/not-started */
+  --background-color: #f4f7f6;
+  --card-background: #ffffff;
+  --border-color: #ddd;
+  --error-color: #f44336;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* --- Auth Containers (Login/Signup) --- */
+.login-container, .signup-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h2, .signup-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.login-container form input, 
+.signup-container form input, 
+.signup-container form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-container button, .signup-container button {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-container button:hover, .signup-container button:hover {
+  background-color: #1a78c2;
+}
+
+.error-message {
+  color: var(--error-color);
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.success-message {
+  color: var(--primary-color);
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* --- Dashboard/Header --- */
+.dashboard-container {
+  padding: 20px;
+  max-width: 1400px; /* Increased max width for better dashboard */
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 15px 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info p {
+  margin: 0;
+  font-weight: 500;
+  padding: 8px 15px;
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+.role-tag {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.teacher-id-info {
+  font-size: 0.85em;
+  color: #666;
+  margin-left: 10px;
+}
+
+.dashboard-header button {
+  background-color: var(--error-color);
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* --- Task Management (Form) --- */
+.task-management-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.task-form-container {
+  background: var(--card-background);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; /* Constrain form width */
+}
+
+.task-form-container h3 {
+  color: var(--secondary-color);
+  margin-top: 0;
+}
+
+.task-form-container form input[type="text"], 
+.task-form-container form textarea,
+.task-form-container form input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.task-form-container form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+}
+
+.task-form-container form button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.task-form-container form button:hover {
+    background-color: #388E3C;
+}
+
+/* --- Task List --- */
+.task-list-section h2 {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  color: #333;
+  margin-top: 25px;
+  font-weight: 700;
+}
+
+.filter-controls {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.filter-controls label {
+    font-weight: 500;
+}
+
+.filter-controls select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+/* --- Task Card --- */
+.task-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  border-left: 6px solid;
+  background: var(--card-background);
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.task-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  color: var(--secondary-color);
+}
+
+.task-card p {
+  margin-bottom: 8px;
+}
+
+.task-meta {
+  font-size: 0.95em;
+  color: #777;
+  padding-top: 5px;
+}
+
+/* Edit Mode Styles */
+.edit-input-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-input-description {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.task-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.task-controls select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-controls button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.task-controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.task-controls .delete-button, .task-controls button:not(.edit-button):not(.save-button) {
+    background-color: var(--error-color);
+    color: white;
+}
+.task-controls .edit-button {
+    background-color: var(--accent-color);
+    color: white;
+}
+.task-controls .save-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Color coding by progress */
+.task-not-started { border-left-color: var(--accent-color); /* Orange */ }
+.task-in-progress { border-left-color: var(--secondary-color); /* Blue */ }
+.task-completed { border-left-color: var(--primary-color); /* Green */ }
+
+/* Links and General Styles */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* client/src/App.css (Add this section) */
+
+.teacher-share-id {
+    color: var(--primary-color); /* Green color to highlight shareable ID */
+    font-weight: bold;
+    margin-left: 15px;
+    padding: 2px 8px;
+    border: 1px dashed var(--primary-color);
+    border-radius: 4px;
+    background-color: #e8f5e9;
+}
